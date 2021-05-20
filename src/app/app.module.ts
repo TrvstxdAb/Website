@@ -64,6 +64,7 @@ import { AlertErrorHandler } from './alert-error.handler';
 import { DevelopersComponent } from './pages/dev/developers.component';
 import { UserSettingsComponent } from './pages/channels/me/settings/user-settings/user-settings.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { RoleComponent } from './pages/channels/role/role.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     TimestampPipe,
     ChangelogComponent,
     ForgotPasswordComponent,
+    RoleComponent,
   ],
   imports: [
     AppRoutingModule,

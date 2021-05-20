@@ -9,21 +9,12 @@
           (cdkDropListDropped)="moveRole($event)"
           class="navbar-nav"
           cdkDropList>
-          <a
+          <app-role
             *ngFor="let role of guild.roles.slice().reverse(); trackBy: identify"
             (click)="selectRole(role)"
-            (contextmenu)="dialog.openMenu($event, menuTrigger)"
-            [style.color]="role.color + '!important'"
-            [class.active]="selectedRole?.id === role.id"
-            [matMenuTriggerFor]="contextMenu"
-            [matMenuTriggerData]="{role:role}"
-            #menuTrigger="matMenuTrigger"
-            class="nav-item nav-link"
-            cdkDrag>
-            <span
-              (click)="selectRole(role) && $event.stopPropagation()"
-              class="d-flex">{{ role.name }}</span>
-          </a>
+            [active]="selectedRole?.id === role.id"
+            [guild]="guild"
+            [role]="role"></app-role>
           <div class="float-right">
             <button
               (click)="newRole()"
@@ -136,25 +127,3 @@
     </div>
   </div>
 </app-settings-sidebar>
-
-<mat-menu
-  matMenuContent
-  #contextMenu>
-  <ng-template
-    let-role="role"
-    matMenuContent>
-    <h6 class="p-2 text-center">{{ role.name }}</h6>
-    <div class="mt-2 p-2">
-      <i class="fas fa-hashtag"></i>
-      <code> {{ guild.roles.indexOf(role) }}</code>
-    </div>
-
-    <div
-      *ngIf="config.get('developerMode')"
-      (click)="$event.stopPropagation()"
-      class="mt-2 p-2">
-      <i class="lni lni-dev"></i>
-      <code> {{ role.id }}</code>
-    </div>
-  </ng-template>
-</mat-menu>
